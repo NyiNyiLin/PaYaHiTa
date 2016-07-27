@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.nyi.payahita.activities.PlaceDetailActivity"
+    tools:showIn="@layout/activity_place_detail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/cv_margin"
+        android:layout_marginRight="@dimen/cv_margin"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_location_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_room_black_24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_medium"/>
+
+                <TextView
+                    android:id="@+id/tv_location_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_location_image"
+                    android:padding="@dimen/cv_padding"
+                    android:text="Location"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_location_image"
+                    android:layout_below="@+id/tv_location_address"
+                    android:paddingBottom="@dimen/cv_padding"
+                    android:paddingLeft="@dimen/cv_padding"
+                    android:paddingRight="@dimen/cv_padding"
+                    android:text="No24. 44st Yangon"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_ph_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_call_black_24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_medium"/>
+
+                <TextView
+                    android:id="@+id/tv_ph_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_ph_image"
+                    android:padding="@dimen/cv_padding"
+                    android:text="Phone no"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_ph_image"
+                    android:layout_below="@+id/tv_ph_title"
+                    android:paddingBottom="@dimen/cv_padding"
+                    android:paddingLeft="@dimen/cv_padding"
+                    android:paddingRight="@dimen/cv_padding"
+                    android:text="09254126854"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_desc_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_description_black_24dp"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium_2"/>
+
+            <TextView
+                android:id="@+id/tv_desc_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/cv_padding"
+                android:layout_toRightOf="@id/iv_desc_image"
+                android:text="Description"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/cv_padding"
+                android:paddingLeft="@dimen/cv_padding"
+                android:paddingRight="@dimen/cv_padding"
+                android:layout_below="@id/tv_desc_title"
+                android:text="@string/large_text"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
