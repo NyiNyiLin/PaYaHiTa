@@ -14,10 +14,13 @@ import butterknife.ButterKnife;
 /**
  * Created by IN-3442 on 27-Jul-16.
  */
-public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     @BindView(R.id.tv_place_name)
     TextView tvPlaceName;
+
+    @BindView(R.id.tv_place_division)
+    TextView tvPlaceDivision;
 
     @BindView(R.id.iv_place_image)
     ImageView ivPlaceImage;
@@ -25,7 +28,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private PlaceVO placeVO;
     private ControllerListItem mControllerListItem;
 
-    public ItemViewHolder(View itemView, ControllerListItem controllerListItem) {
+    public PlaceViewHolder(View itemView, ControllerListItem controllerListItem) {
         super(itemView);
         ButterKnife.bind(this, itemView);
         itemView.setOnClickListener(this);
@@ -35,6 +38,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void bindItem(PlaceVO placeVO){
         this.placeVO = placeVO;
         tvPlaceName.setText(placeVO.getTitle());
+        tvPlaceDivision.setText(placeVO.getDivision());
     }
 
     @Override

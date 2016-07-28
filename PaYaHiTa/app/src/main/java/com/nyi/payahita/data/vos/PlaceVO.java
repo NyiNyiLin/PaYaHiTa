@@ -4,6 +4,7 @@ package com.nyi.payahita.data.vos;
  * Created by IN-3442 on 27-Jul-16.
  */
 public class PlaceVO {
+    int id;
     String title;
     String division;
     String location;
@@ -11,6 +12,19 @@ public class PlaceVO {
     String detail;
 
     public PlaceVO() {
+    }
+
+    public PlaceVO(int id, String title, String division, String location, String phNo, String detail) {
+        this.id = id;
+        this.title = title;
+        this.division = division;
+        this.location = location;
+        this.phNo = phNo;
+        this.detail = detail;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public PlaceVO(String title) {

@@ -8,34 +8,34 @@ import android.view.ViewGroup;
 import com.nyi.payahita.PaYaHiTa;
 import com.nyi.payahita.R;
 import com.nyi.payahita.data.vos.PlaceVO;
-import com.nyi.payahita.views.holders.ItemViewHolder;
+import com.nyi.payahita.views.holders.PlaceViewHolder;
 
 import java.util.List;
 
 /**
  * Created by IN-3442 on 27-Jul-16.
  */
-public class PlaceAdapter extends RecyclerView.Adapter<ItemViewHolder> {
+public class PlaceAdapter extends RecyclerView.Adapter<PlaceViewHolder> {
     private List<PlaceVO> mItemList;
     private LayoutInflater inflater;
-    private ItemViewHolder.ControllerListItem mControllerListItem;
+    private PlaceViewHolder.ControllerListItem mControllerListItem;
 
-    public PlaceAdapter(List<PlaceVO> placeVOList, ItemViewHolder.ControllerListItem controllerListItem) {
+    public PlaceAdapter(List<PlaceVO> placeVOList, PlaceViewHolder.ControllerListItem controllerListItem) {
         this.mItemList = placeVOList;
         mControllerListItem = controllerListItem;
         inflater = LayoutInflater.from(PaYaHiTa.getContext());
     }
 
     @Override
-    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.view_place_item, parent, false);
-        ItemViewHolder itemViewHolder = new ItemViewHolder(view, mControllerListItem);
-        return itemViewHolder;
+        PlaceViewHolder placeViewHolder = new PlaceViewHolder(view, mControllerListItem);
+        return placeViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, int position) {
-        holder.bindItem(mItemList.get(0));
+    public void onBindViewHolder(PlaceViewHolder holder, int position) {
+        holder.bindItem(mItemList.get(position));
     }
 
     @Override

@@ -35,7 +35,7 @@
                     android:layout_marginLeft="@dimen/margin_medium"/>
 
                 <TextView
-                    android:id="@+id/tv_location_address"
+                    android:id="@+id/tv_location_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_location_image"
@@ -44,10 +44,11 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
+                    android:id="@+id/tv_location_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_location_image"
-                    android:layout_below="@+id/tv_location_address"
+                    android:layout_below="@+id/tv_location_title"
                     android:paddingBottom="@dimen/cv_padding"
                     android:paddingLeft="@dimen/cv_padding"
                     android:paddingRight="@dimen/cv_padding"
@@ -85,6 +86,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
+                    android:id="@+id/tv_ph_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_ph_image"
@@ -128,6 +130,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
+                android:id="@+id/tv_desc_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/cv_padding"

@@ -36,4 +36,5 @@ public class MainActivityFragment extends Fragment {
         Intent intentToListActivity = PlaceListActivity.newInstance();
         startActivity(intentToListActivity);
     }
+
 }

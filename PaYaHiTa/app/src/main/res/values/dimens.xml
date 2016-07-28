@@ -28,4 +28,6 @@
 
     <dimen name="cv_margin">16dp</dimen>
     <dimen name="cv_padding">16dp</dimen>
+
+    <dimen name="screen_title_size">22sp</dimen>
 </resources>
