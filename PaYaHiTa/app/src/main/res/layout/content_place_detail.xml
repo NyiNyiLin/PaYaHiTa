@@ -138,7 +138,8 @@
                 android:paddingRight="@dimen/cv_padding"
                 android:layout_below="@id/tv_desc_title"
                 android:text="@string/large_text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:lineSpacingMultiplier="1.2"/>
 
         </RelativeLayout>
         </android.support.v7.widget.CardView>

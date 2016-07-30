@@ -24,6 +24,9 @@ public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @BindView(R.id.iv_place_image)
     ImageView ivPlaceImage;
+/*
+    @BindView(R.id.tv_place_desc)
+    TextView tvPlaceDesc;*/
 
     private PlaceVO placeVO;
     private ControllerListItem mControllerListItem;
@@ -39,6 +42,7 @@ public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnC
         this.placeVO = placeVO;
         tvPlaceName.setText(placeVO.getTitle());
         tvPlaceDivision.setText(placeVO.getDivision());
+        //tvPlaceDesc.setText(placeVO.getDetail());
     }
 
     @Override

@@ -28,7 +28,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceViewHolder> {
 
     @Override
     public PlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.view_place_item, parent, false);
+        View view = inflater.inflate(R.layout.view_place_item2, parent, false);
         PlaceViewHolder placeViewHolder = new PlaceViewHolder(view, mControllerListItem);
         return placeViewHolder;
     }

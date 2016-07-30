@@ -14,6 +14,14 @@ public class PlaceVO {
     public PlaceVO() {
     }
 
+    public PlaceVO(String title, String division, String location, String phNo, String detail) {
+        this.title = title;
+        this.division = division;
+        this.location = location;
+        this.phNo = phNo;
+        this.detail = detail;
+    }
+
     public PlaceVO(int id, String title, String division, String location, String phNo, String detail) {
         this.id = id;
         this.title = title;
@@ -25,10 +33,6 @@ public class PlaceVO {
 
     public int getId() {
         return id;
-    }
-
-    public PlaceVO(String title) {
-        this.title = title;
     }
 
     public String getTitle() {
@@ -49,5 +53,9 @@ public class PlaceVO {
 
     public String getDivision() {
         return division;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

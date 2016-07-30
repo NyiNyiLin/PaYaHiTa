@@ -1,6 +1,7 @@
 package com.nyi.payahita.data.models;
 
 import com.nyi.payahita.data.vos.PlaceVO;
+import com.nyi.payahita.utils.UploadDataUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class PlaceModel{
     private List<PlaceVO> mPlaceList;
 
     public PlaceModel(){
-        mPlaceList = fakeData();
+        mPlaceList = UploadDataUtils.assignOfflineData();
     }
 
     public static PlaceModel getObjInstance(){

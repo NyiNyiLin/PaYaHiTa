@@ -1,73 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin_small"
-    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardBackgroundColor="@android:color/white"
     card_view:cardElevation="@dimen/card_elevation"
     card_view:cardUseCompatPadding="true">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_place_image"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/drawer_background" />
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"
+            android:visibility="gone" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_attach_file_black_24dp"
-            android:layout_alignParentRight="true"
-            android:padding="@dimen/margin_medium"/>
+            android:layout_marginTop="@dimen/margin_medium">
 
-        <TextView
-            android:id="@+id/tv_place_division"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_place_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drawer_background"
+                app:civ_border_color="#ff0000"
+                app:civ_border_width="2dp" />
+
+
+            <com.nyi.payahita.components.MMTextView
+                android:id="@+id/tv_place_name"
+                style="@style/CardViewText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/iv_place_image"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@id/iv_place_image"
+                android:fontFamily="sans-serif-condensed"
+                android:text="name"
+                android:textColor="#000"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <ImageView
+                android:id="@+id/iv_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/margin_medium"
+                android:src="@drawable/ic_share_black_24dp" />
+
+            <ImageView
+                android:id="@+id/iv_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/iv_share"
+                android:padding="@dimen/margin_medium"
+                android:src="@drawable/ic_bookmark_black_24dp" />
+
+            <com.nyi.payahita.components.MMTextView
+                android:id="@+id/tv_place_division"
+                style="@style/CardViewText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_place_name"
+                android:layout_toRightOf="@id/iv_place_image"
+                android:layout_marginTop="@dimen/margin_small"
+                android:fontFamily="sans-serif-condensed"
+                android:paddingBottom="@dimen/margin_small"
+                android:text="division"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <com.nyi.payahita.components.MMTextView
+            android:id="@+id/tv_place_desc"
             style="@style/CardViewText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/iv_place_image"
-            android:fontFamily="sans-serif-condensed"
-            android:paddingBottom="@dimen/margin_small"
-            android:text="division"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_place_name"
-            style="@style/CardViewText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/tv_place_division"
-            android:fontFamily="sans-serif-condensed"
-            android:paddingTop="@dimen/margin_small"
-            android:text="name"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
-
-        <ImageView
-            android:id="@+id/iv_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/iv_place_image"
-            android:padding="@dimen/margin_medium"
-            android:src="@drawable/ic_share_black_24dp" />
-
-        <ImageView
-            android:id="@+id/iv_bookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/iv_place_image"
-            android:layout_toLeftOf="@id/iv_share"
-            android:padding="@dimen/margin_medium"
-            android:src="@drawable/ic_bookmark_black_24dp" />
-    </RelativeLayout>
+            android:layout_marginTop="@dimen/margin_small"
+            android:ellipsize="end"
+            android:lineSpacingMultiplier="1.2"
+            android:maxLines="4"
+            android:paddingBottom="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:text="@string/large_text"
+            android:textColor="#000" />
+    </LinearLayout>
 
 
 </android.support.v7.widget.CardView>
