@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -24,36 +25,37 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/margin_medium_2">
 
                 <ImageView
                     android:id="@+id/iv_location_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_room_black_24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_medium"/>
+                    android:layout_centerVertical="true"/>
 
-                <TextView
+                <com.nyi.payahita.components.MMTextView
                     android:id="@+id/tv_location_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_location_image"
-                    android:padding="@dimen/cv_padding"
-                    android:text="Location"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:text="@string/text_location"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"/>
 
-                <TextView
+                <com.nyi.payahita.components.MMTextView
                     android:id="@+id/tv_location_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_location_image"
                     android:layout_below="@+id/tv_location_title"
-                    android:paddingBottom="@dimen/cv_padding"
-                    android:paddingLeft="@dimen/cv_padding"
-                    android:paddingRight="@dimen/cv_padding"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
                     android:text="No24. 44st Yangon"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:lineSpacingMultiplier="1.2"/>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -76,16 +78,17 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_medium"/>
 
-                <TextView
+                <com.nyi.payahita.components.MMTextView
                     android:id="@+id/tv_ph_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/iv_ph_image"
                     android:padding="@dimen/cv_padding"
-                    android:text="Phone no"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:text="@string/text_ph_no"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"/>
 
-                <TextView
+                <com.nyi.payahita.components.MMTextView
                     android:id="@+id/tv_ph_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,7 +103,70 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/margin_medium"
+                    android:orientation="vertical">
+
+                    <com.nyi.payahita.components.MMTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:text="@string/text_today_cost"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <com.nyi.payahita.components.MMTextView
+                        android:id="@+id/tv_daily_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1500"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/margin_medium"
+                    android:orientation="vertical">
+
+                    <com.nyi.payahita.components.MMTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_medium"
+                        android:text="@string/text_total_people"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <com.nyi.payahita.components.MMTextView
+                        android:id="@+id/tv_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -120,16 +186,17 @@
                 android:layout_marginLeft="@dimen/margin_medium"
                 android:layout_marginTop="@dimen/margin_medium_2"/>
 
-            <TextView
+            <com.nyi.payahita.components.MMTextView
                 android:id="@+id/tv_desc_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/cv_padding"
                 android:layout_toRightOf="@id/iv_desc_image"
-                android:text="Description"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="@string/text_detail_desc"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"/>
 
-            <TextView
+            <com.nyi.payahita.components.MMTextView
                 android:id="@+id/tv_desc_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

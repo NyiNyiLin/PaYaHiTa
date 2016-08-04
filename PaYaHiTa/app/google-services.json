@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "108871011524",
+    "firebase_url": "https://payahita-50db4.firebaseio.com",
+    "project_id": "payahita-50db4",
+    "storage_bucket": "payahita-50db4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108871011524:android:fd199e41588ff478",
+        "android_client_info": {
+          "package_name": "com.nyi.payahita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108871011524-6v8o41hri4o7s692ok1l4s26ci98k2oj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nyi.payahita",
+            "certificate_hash": "7EDBC82F51002AF2DA354DD392AEF36401A324E5"
+          }
+        },
+        {
+          "client_id": "108871011524-v1usurjr3gohiq105llu34rtg9pbn19b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_1hBVR6X3BrlCbT_S511Ua2mHk2jMhk4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108871011524-v1usurjr3gohiq105llu34rtg9pbn19b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

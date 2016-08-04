@@ -1,5 +1,6 @@
 package com.nyi.payahita.views.holders;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +17,9 @@ import butterknife.ButterKnife;
  */
 public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+    @BindView(R.id.cl_detail)
+    CardView cardView;
+
     @BindView(R.id.tv_place_name)
     TextView tvPlaceName;
 
@@ -24,9 +28,9 @@ public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @BindView(R.id.iv_place_image)
     ImageView ivPlaceImage;
-/*
+
     @BindView(R.id.tv_place_desc)
-    TextView tvPlaceDesc;*/
+    TextView tvPlaceDesc;
 
     private PlaceVO placeVO;
     private ControllerListItem mControllerListItem;
@@ -42,15 +46,15 @@ public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnC
         this.placeVO = placeVO;
         tvPlaceName.setText(placeVO.getTitle());
         tvPlaceDivision.setText(placeVO.getDivision());
-        //tvPlaceDesc.setText(placeVO.getDetail());
+        tvPlaceDesc.setText(placeVO.getDetail());
     }
 
     @Override
     public void onClick(View view) {
-        mControllerListItem.onTapListItemVO(placeVO, ivPlaceImage);
+        mControllerListItem.onTapListItemVO(placeVO, cardView);
     }
 
     public interface ControllerListItem{
-        void onTapListItemVO(PlaceVO placeVO, ImageView imageView);
+        void onTapListItemVO(PlaceVO placeVO, CardView cardView);
     }
 }

@@ -1,8 +1,24 @@
 <resources>
-    <string name="app_name">PaYaHiTa</string>
+    <string name="app_name">ပရဟိတ</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="title_activity_place_detail">PlaceDetailActivity</string>
+
+    <string name="content_authority">com.nyi.payahita</string>
+
+    <string name="title_orphan">မိဘမဲ့ေဂဟာမ်ား</string>
+    <string name="title_nursing_home">ဘိုးဘြားရိပ္သာမ်ား</string>
+    <string name="title_pa_ya_hi_ta">ပရဟိတေက်ာင္းမ်ား</string>
+    <string name="title_ba_ka">ဘုန္းႀကီးေက်ာင္းပညာသင္ေက်ာင္းမ်ား</string>
+    <string name="title_ti_la_shin">သီလရွင္ပညာသင္ေက်ာင္းမ်ား</string>
+
+    <string name="text_today_cost">တစ္ေန႔ကုန္က်ေငြ</string>
+    <string name="text_total_people">စုစုေပါင္းလူဦးေရ</string>
+    <string name="text_location">တည္ေနရာ</string>
+    <string name="text_ph_no">ဖုန္းနံပါတ္</string>
+    <string name="text_detail_desc">အေသးစိတ္အခ်က္အလက္</string>
+    
+    
     <string name="large_text">
         "Material is the metaphor."
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."

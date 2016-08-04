@@ -7,10 +7,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nyi.payahita.PaYaHiTa;
 import com.nyi.payahita.R;
@@ -26,6 +28,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PlaceListActivity extends AppCompatActivity implements PlaceViewHolder.ControllerListItem{
+    private final String LOGTAG = "PlaceListActivity";
+
     @BindView(R.id.rv_item)
     RecyclerView rvItem;
 
@@ -65,11 +69,11 @@ public class PlaceListActivity extends AppCompatActivity implements PlaceViewHol
     }
 
     @Override
-    public void onTapListItemVO(PlaceVO placeVO, ImageView imageView) {
+    public void onTapListItemVO(PlaceVO placeVO, CardView textView) {
         Intent intent = PlaceDetailActivity.newInstance(placeVO.getId());
 
-        ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
+        /*ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
                 new Pair(imageView, PlaceDetailActivity.TO_DETAIL_TRANSITION_NAME));
-        ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
+        ActivityCompat.startActivity(this, intent, activityOptions.toBundle());*/
     }
 }

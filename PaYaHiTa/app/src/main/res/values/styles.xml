@@ -22,7 +22,15 @@
         <item name="android:paddingLeft">16dp</item>
     </style>
 
-    <style name="PlaceDetailTitle" parent="TextAppearance.AppCompat.Title">
+    <style name="PlaceDetailTitleExpanded" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="PlaceDetailTitleCollapsed" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="PlaceDetailTitleForDetail" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">#fff</item>
     </style>
 

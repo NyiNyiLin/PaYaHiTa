@@ -37,6 +37,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nyi.payahita.activities.PlaceListActivity" />
         </activity>
+
+        <provider
+            android:authorities="@string/content_authority"
+            android:name=".data.persistence.PlaceProvider"
+            android:exported="false"
+            android:syncable="true" /> <!-- Need to be true to sync auto-->
     </application>
 
 </manifest>

@@ -1,50 +1,29 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
 
-    <Button
-        android:id="@+id/btn_orphantage"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_place"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableTop="@mipmap/ic_launcher"
-        android:text="Orphan"
-        android:layout_centerHorizontal="true"/>
+        android:background="@color/colorPrimary"
+        app:tabMode="scrollable"
+        app:tabTextColor="@color/white"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Subtitle"
+        />
 
-    <Button
-        android:id="@+id/btn_nursing_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_orphantage"
-        android:drawableTop="@mipmap/ic_launcher"
-        android:text="Nursing Home"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_place"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
-    <Button
-        android:id="@+id/btn_ba_ka"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_nursing_home"
-        android:drawableTop="@mipmap/ic_launcher"
-        android:text="Ba Ka"/>
 
-    <Button
-        android:id="@+id/btn_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_ba_ka"
-        android:drawableTop="@mipmap/ic_launcher"
-        android:text="Num"/>
-
-    <Button
-        android:id="@+id/btn_ti_la_shin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_num"
-        android:drawableTop="@mipmap/ic_launcher"
-        android:text="Ti La Shin"/>
-
-</RelativeLayout>
+</LinearLayout>
