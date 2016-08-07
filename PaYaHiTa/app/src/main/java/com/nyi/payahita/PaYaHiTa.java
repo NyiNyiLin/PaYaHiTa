@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.nyi.payahita.data.agents.Firebase;
 import com.nyi.payahita.data.models.PlaceModel;
 import com.nyi.payahita.data.vos.PlaceVO;
+import com.nyi.payahita.utils.Constants;
 import com.nyi.payahita.utils.UploadDataUtils;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class PaYaHiTa extends Application{
         PlaceModel.getObjInstance();
 
         //uploadData();
-        Firebase.fetchData();
+        Firebase.fetchData(Constants.NAVIGATE_ORPHAN);
 
     }
 
@@ -38,8 +39,7 @@ public class PaYaHiTa extends Application{
         List<PlaceVO> placeVOList = UploadDataUtils.assignData();
 
         for(PlaceVO placeVO: placeVOList){
-            DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();
-            mDatabaseReference.child("orphan").push().setValue(placeVO);
+            Firebase.uploadNewPlace(Constants.NAVIGATE_ORPHAN, placeVO);
         }
     }
 }

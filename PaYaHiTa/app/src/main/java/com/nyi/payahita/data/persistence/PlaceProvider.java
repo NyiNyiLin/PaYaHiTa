@@ -22,6 +22,7 @@ public class PlaceProvider extends ContentProvider {
 
     public static final int PLACE = 100;
     public static final String placeIDSelection = PlaceContract.OrphanPlaceEntry.COLUMN_ID + " = ?";
+    public static final String placeIsSavedSelection = PlaceContract.OrphanPlaceEntry.COLUMN_IS_SAVED + " = ?";
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private PlaceDBHelper mPlaceDBHelper;
@@ -46,6 +47,13 @@ public class PlaceProvider extends ContentProvider {
                     selectionArgs = new String[]{placeID};
                     Log.d(Constants.LOGTAG, LOGTAG + placeID);
                 }
+
+                String isSaved = PlaceContract.OrphanPlaceEntry.getIsSavedValueFromParam(uri);
+                if(!TextUtils.isEmpty(isSaved)){
+                    selection = placeIsSavedSelection;
+                    selectionArgs = new String[]{isSaved};
+                }
+
                 queryCursor = mPlaceDBHelper.getReadableDatabase().query(PlaceContract.OrphanPlaceEntry.TABLE_NAME,
                         projection,
                         selection,
@@ -126,6 +134,7 @@ public class PlaceProvider extends ContentProvider {
         if (context != null && rowUpdated > 0) {
             context.getContentResolver().notifyChange(uri, null);
         }
+        Log.d(Constants.LOGTAG, LOGTAG + "upadate count " + rowUpdated);
         return rowUpdated;
     }
 

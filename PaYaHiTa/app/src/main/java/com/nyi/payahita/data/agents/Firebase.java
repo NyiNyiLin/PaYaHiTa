@@ -1,5 +1,7 @@
 package com.nyi.payahita.data.agents;
 
+import android.util.Log;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -8,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.nyi.payahita.adapters.PlaceAdapter;
 import com.nyi.payahita.data.models.PlaceModel;
 import com.nyi.payahita.data.vos.PlaceVO;
+import com.nyi.payahita.utils.Constants;
 
 import java.util.List;
 
@@ -15,6 +18,8 @@ import java.util.List;
  * Created by IN-3442 on 02-Aug-16.
  */
 public class Firebase {
+
+    private static final String LOGTAG = "Firebase + ";
 
     public static void fetchDta(final PlaceAdapter placeAdapter){
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("orphan");
@@ -66,9 +71,8 @@ public class Firebase {
         });
     }
 
-    public static void fetchData(){
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("orphan");
-
+    public static void fetchData(int navigateType){
+        final DatabaseReference databaseReference = checkType(navigateType);
 
         //databaseReference.addValueEventListener()
 
@@ -84,7 +88,8 @@ public class Firebase {
                 placeAdapter.addNewPlace(placeVO);*/
 
                 //Using Content Provider
-                PlaceModel.getObjInstance().notifyPlaceLoaded(placeVO);
+                if(placeVO.getTitle() != null) PlaceModel.getObjInstance().notifyPlaceLoaded(placeVO);
+                else Log.d(Constants.LOGTAG, LOGTAG + "Place is empty");
             }
 
             @Override
@@ -111,5 +116,22 @@ public class Firebase {
 
             }
         });
+    }
+
+    public static void uploadNewPlace(int navigateTo, PlaceVO placeVO){
+        DatabaseReference typeDataBDatabaseReference = checkType(navigateTo);
+        typeDataBDatabaseReference.push().setValue(placeVO);
+
+    }
+
+    private static DatabaseReference checkType(int navigateTo){
+        DatabaseReference mDatabaseReference;
+        switch (navigateTo){
+            case Constants.NAVIGATE_ORPHAN:
+                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("orphan");
+                return mDatabaseReference;
+            default:
+                return FirebaseDatabase.getInstance().getReference();
+        }
     }
 }

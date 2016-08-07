@@ -47,7 +47,7 @@ public class PlaceModel{
                 return placeVO;
             }
         }
-        Log.d("tay lay", id);
+        Log.d(Constants.LOGTAG, LOGTAG + id);
         return new PlaceVO();
     }
 
@@ -72,30 +72,17 @@ public class PlaceModel{
 
         //keep the data in persistent layer.
         Context context = PaYaHiTa.getContext();
-
-        Uri uri = context.getContentResolver().insert(PlaceContract.OrphanPlaceEntry.CONTENT_URI, parseToContentValues(placeVO));
+        Uri uri = context.getContentResolver().insert(PlaceContract.OrphanPlaceEntry.CONTENT_URI, PlaceVO.parseToContentValues(placeVO));
 
         Log.d(Constants.LOGTAG, LOGTAG + uri);
 
     }
 
-    private ContentValues parseToContentValues(PlaceVO placeVO) {
-        ContentValues cv = new ContentValues();
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_ID, placeVO.getId());
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_TITLE, placeVO.getTitle());
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_DIVISION, placeVO.getDivision());
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_LOCATION, placeVO.getLocation());
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_PH_NO, placeVO.getPhNo());
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_COST, placeVO.getCost());
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_QUANTITY, placeVO.getQuantity());
-        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_DETAIL, placeVO.getDetail());
 
-        return cv;
-    }
 
     public void notifyPlaceChange(PlaceVO placeVO) {
         //keep the data in persistent layer.
         Context context = PaYaHiTa.getContext();
-        context.getContentResolver().update(PlaceContract.OrphanPlaceEntry.CONTENT_URI, parseToContentValues(placeVO), PlaceProvider.placeIDSelection, new String[]{placeVO.getId()});
+        context.getContentResolver().update(PlaceContract.OrphanPlaceEntry.CONTENT_URI, PlaceVO.parseToContentValues(placeVO), PlaceProvider.placeIDSelection, new String[]{placeVO.getId()});
     }
 }

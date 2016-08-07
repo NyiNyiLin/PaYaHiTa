@@ -30,4 +30,5 @@
     <dimen name="cv_padding">16dp</dimen>
 
     <dimen name="screen_title_size">22sp</dimen>
+    <dimen name="left_menu_width">280dp</dimen>
 </resources>

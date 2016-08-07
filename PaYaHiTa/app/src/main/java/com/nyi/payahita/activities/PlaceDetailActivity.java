@@ -1,7 +1,9 @@
 package com.nyi.payahita.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -15,6 +17,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,11 +25,14 @@ import com.nyi.payahita.PaYaHiTa;
 import com.nyi.payahita.R;
 import com.nyi.payahita.data.models.PlaceModel;
 import com.nyi.payahita.data.persistence.PlaceContract;
+import com.nyi.payahita.data.persistence.PlaceProvider;
 import com.nyi.payahita.data.vos.PlaceVO;
 import com.nyi.payahita.utils.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+//import me.grantland.widget.AutofitHelper;
 
 public class PlaceDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -35,6 +41,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements LoaderMana
     private static final String EXTRA_ID = "extra_id";
     public static final String TO_DETAIL_TRANSITION_NAME = "detail_transition";
     private String mPlaceID;
+    private PlaceVO placeVO;
 
     private ActionBar actionBar;
 
@@ -64,7 +71,6 @@ public class PlaceDetailActivity extends AppCompatActivity implements LoaderMana
 
     @BindView(R.id.tv_place_name)
     TextView tvToolBarTitle;
-
 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -104,17 +110,26 @@ public class PlaceDetailActivity extends AppCompatActivity implements LoaderMana
         //setData(id);
 
         getSupportLoaderManager().initLoader(Constants.PLACE_DETAIL_LOADER, null, this);
+
+        //AutofitHelper.create(tvToolBarTitle);
     }
 
     private void setData(PlaceVO placeVO){
         if(placeVO != null){
             actionBar.setTitle(placeVO.getTitle());
             tvToolBarTitle.setText(placeVO.getTitle());
+
             tvLocationAddress.setText(placeVO.getLocation() + placeVO.getDivision());
             tvDescText.setText(placeVO.getDetail());
             tvPhNo.setText(placeVO.getPhNo());
             tvDailyCost.setText(placeVO.getCost());
             tvQuantity.setText(placeVO.getQuantity());
+
+            if(placeVO.getIsSaved() == Constants.SAVED){
+                fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+            }else {
+                fab.setImageResource(R.drawable.ic_favorite_white_24dp);
+            }
         }else throw new RuntimeException("There is no Place with given id");
     }
 
@@ -133,7 +148,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements LoaderMana
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
-            PlaceVO placeVO = PlaceVO.parseFromCursor(data);
+             placeVO = PlaceVO.parseFromCursor(data);
             setData(placeVO);
         }
     }
@@ -141,5 +156,22 @@ public class PlaceDetailActivity extends AppCompatActivity implements LoaderMana
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @OnClick(R.id.fab)
+    public void onClickFab(FloatingActionButton fab){
+        if(placeVO.getIsSaved() == Constants.SAVED) {
+            placeVO.setIsSaved(Constants.UNSAVED);
+            fab.setImageResource(R.drawable.ic_favorite_white_24dp);
+        }
+        else {
+            placeVO.setIsSaved(Constants.SAVED);
+            fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+            Log.d(Constants.LOGTAG, LOGTAG + "Saved");
+        }
+
+        //keep the data in persistent layer.
+        Context context = PaYaHiTa.getContext();
+        context.getContentResolver().update(PlaceContract.OrphanPlaceEntry.CONTENT_URI, PlaceVO.parseToContentValues(placeVO), PlaceProvider.placeIDSelection, new String[]{placeVO.getId()});
     }
 }

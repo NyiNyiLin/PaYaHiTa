@@ -37,6 +37,8 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
     compile 'com.google.firebase:firebase-core:9.0.1'
     compile 'com.google.firebase:firebase-database:9.0.1'
+
+    //compile 'me.grantland:autofittextview:0.2.+'
 }
 
 // ADD THIS AT THE BOTTOM

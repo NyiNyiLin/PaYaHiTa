@@ -44,7 +44,7 @@ public class PlaceContract {
         }
 
         public static Uri buildOrphanPlaceUriWithID(String placeID) {
-            //content://xyz.aungpyaephyo.padc.myanmarattractions/attractions?title="Yangon"
+            //content://com.nyi.payahita/place?id="placeID"
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_ID, placeID)
                     .build();
@@ -52,6 +52,18 @@ public class PlaceContract {
 
         public static String getIDFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_ID);
+        }
+
+
+        public static Uri buildOrphanPlaceUriWithIsSaved(int isSaved) {
+            //content://com.nyi.payahita/place?id="placeID"
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_IS_SAVED, isSaved + "")
+                    .build();
+        }
+
+        public static String getIsSavedValueFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_IS_SAVED);
         }
 
     }

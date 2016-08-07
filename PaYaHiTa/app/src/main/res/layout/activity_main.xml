@@ -1,106 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".activities.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="@dimen/margin_medium_2"
-            app:expandedTitleMarginStart="@dimen/margin_medium_2"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:expandedTitleTextAppearance="@style/PlaceDetailTitleExpanded"
-            app:collapsedTitleTextAppearance="@style/PlaceDetailTitleCollapsed"
-            android:background="@color/colorPrimary"
-            app:expandedTitleGravity="center">
-
-            <ImageView
-                android:id="@+id/iv_place_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/drawer_background"
-                app:layout_collapseMode="parallax"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                android:adjustViewBounds="true"
-                android:visibility="gone"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="We only get what we give"
-                app:layout_collapseMode="parallax"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textSize="24sp"
-                android:visibility="gone"/>
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_place"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_collapseMode="parallax"
-                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                android:background="@color/colorPrimary"
+                app:tabIndicatorColor="@color/colorPrimaryExtraDark"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/colorPrimaryDark"
+                app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Subtitle"
+                app:tabTextColor="@color/white" />
 
-                <com.nyi.payahita.components.MMTextView
-                    android:id="@+id/tv_main_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    />
+        </android.support.design.widget.AppBarLayout>
 
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_place"
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager_place"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:tabMode="scrollable"
-            app:tabTextColor="@color/white"
-            app:tabSelectedTextColor="@color/colorAccent"
-            app:tabIndicatorColor="@color/white"
-            app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Subtitle"/>
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_add_white_24dp" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager_place"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    </android.support.design.widget.CoordinatorLayout>
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="@dimen/left_menu_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header_layout"
+        app:itemIconTint="@drawable/state_left_menu_item"
+        app:itemTextColor="@drawable/state_left_menu_item"
+        app:menu="@menu/left_menu" />
 
-    </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_white_24dp"/>
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.v4.widget.DrawerLayout>

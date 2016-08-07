@@ -39,10 +39,24 @@
         </activity>
 
         <provider
-            android:authorities="@string/content_authority"
             android:name=".data.persistence.PlaceProvider"
+            android:authorities="@string/content_authority"
             android:exported="false"
-            android:syncable="true" /> <!-- Need to be true to sync auto-->
+            android:syncable="true" />
+        <!-- Need to be true to sync auto -->
+        <activity
+            android:name=".activities.NewEditActivity"
+            android:label="@string/title_activity_new_edit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SavedActivity"
+            android:label="@string/title_activity_saved"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nyi.payahita.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
