@@ -33,6 +33,7 @@ import com.nyi.payahita.adapters.PlaceFragmentPagerAdapter;
 import com.nyi.payahita.data.vos.PlaceVO;
 import com.nyi.payahita.fragments.MainActivityFragment;
 import com.nyi.payahita.fragments.PlaceListFragment;
+import com.nyi.payahita.utils.Constants;
 import com.nyi.payahita.utils.MMFontUtils;
 import com.nyi.payahita.views.holders.PlaceViewHolder;
 
@@ -85,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements PlaceViewHolder.C
         //Bind Fragment
         mPlaceFragmentPagerAdapter = new PlaceFragmentPagerAdapter(getSupportFragmentManager());
 
-        mPlaceFragmentPagerAdapter.addTab(PlaceListFragment.newInstance(), getResources().getString(R.string.title_orphan));
-        mPlaceFragmentPagerAdapter.addTab(new Fragment(), getResources().getString(R.string.title_nursing_home));
+        mPlaceFragmentPagerAdapter.addTab(PlaceListFragment.newInstance(Constants.NAVIGATE_ORPHAN), getResources().getString(R.string.title_orphan));
+        mPlaceFragmentPagerAdapter.addTab(PlaceListFragment.newInstance(Constants.NAVIGATE_NURSING_HOME), getResources().getString(R.string.title_nursing_home));
         mPlaceFragmentPagerAdapter.addTab(new Fragment(), getResources().getString(R.string.title_pa_ya_hi_ta));
         mPlaceFragmentPagerAdapter.addTab(new Fragment(), getResources().getString(R.string.title_ba_ka));
         mPlaceFragmentPagerAdapter.addTab(new Fragment(), getResources().getString(R.string.title_ti_la_shin));

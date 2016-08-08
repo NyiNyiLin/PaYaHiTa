@@ -1,6 +1,7 @@
 package com.nyi.payahita.data.vos;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 
 import com.nyi.payahita.data.persistence.PlaceContract;
@@ -12,6 +13,7 @@ import com.nyi.payahita.utils.Constants;
 public class PlaceVO {
     String id;
     String title;
+    int type;
     String division;
     String location;
     String phNo;
@@ -44,9 +46,10 @@ public class PlaceVO {
         this.detail = detail;
     }
 
-    public PlaceVO(String id, String title, String division, String location, String phNo, String cost, String quantity, String detail, int isSaved) {
+    public PlaceVO(String id, String title, int type, String division, String location, String phNo, String cost, String quantity, String detail, int isSaved) {
         this.id = id;
         this.title = title;
+        this.type = type;
         this.division = division;
         this.location = location;
         this.phNo = phNo;
@@ -64,12 +67,20 @@ public class PlaceVO {
         this.isSaved = isSaved;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public String getId() {
         return id;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public int getType() {
+        return type;
     }
 
     public String getLocation() {
@@ -108,6 +119,7 @@ public class PlaceVO {
         PlaceVO placeVO = new PlaceVO(
                 data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_ID)),
                 data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_TITLE)),
+                Integer.parseInt(data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_TYPE))),
                 data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_DIVISION)),
                 data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_LOCATION)),
                 data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_PH_NO)),
@@ -123,6 +135,7 @@ public class PlaceVO {
         ContentValues cv = new ContentValues();
         cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_ID, placeVO.getId());
         cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_TITLE, placeVO.getTitle());
+        cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_TYPE, placeVO.getType());
         cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_DIVISION, placeVO.getDivision());
         cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_LOCATION, placeVO.getLocation());
         cv.put(PlaceContract.OrphanPlaceEntry.COLUMN_PH_NO, placeVO.getPhNo());

@@ -2,6 +2,7 @@ package com.nyi.payahita.fragments;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nyi.payahita.PaYaHiTa;
 import com.nyi.payahita.R;
 import com.nyi.payahita.adapters.PlaceAdapter;
@@ -35,6 +38,8 @@ import butterknife.ButterKnife;
 public class PlaceListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private final String LOG = "PlaceListFragment";
+    private static final String NAVIGATESTRING = "navigate";
+    private int mNavigateTo;
 
     @BindView(R.id.rv_item)
     RecyclerView rvItem;
@@ -44,8 +49,19 @@ public class PlaceListFragment extends Fragment implements LoaderManager.LoaderC
     private PlaceViewHolder.ControllerListItem mControllerListItem;
 
 
-    public static Fragment newInstance(){
+    public static Fragment newInstance(int NavigateTo){
         Fragment fragment = new PlaceListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(NAVIGATESTRING, NavigateTo);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    public static Fragment newInstance2(int NavigateTo){
+        Fragment fragment = new PlaceListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(NAVIGATESTRING, NavigateTo);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -58,7 +74,12 @@ public class PlaceListFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().getSupportLoaderManager().initLoader(Constants.PLACE_LIST_LOADER, null, this);
+        getActivity().getSupportLoaderManager().initLoader(mNavigateTo, null, this);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
@@ -69,6 +90,9 @@ public class PlaceListFragment extends Fragment implements LoaderManager.LoaderC
             placeList = new ArrayList<>();
         }
         placeList = new ArrayList<>();
+
+        Bundle bundle = getArguments();
+        mNavigateTo = bundle.getInt(NAVIGATESTRING);
     }
 
     @Nullable
@@ -93,7 +117,7 @@ public class PlaceListFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(),
-                PlaceContract.OrphanPlaceEntry.CONTENT_URI,
+                PlaceContract.OrphanPlaceEntry.buildOrphanPlaceUriWithType(mNavigateTo),
                 null,
                 null,
                 null,
@@ -118,6 +142,16 @@ public class PlaceListFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    private Uri getQueryUri(int navigateTo){
+        switch (navigateTo){
+            case Constants.NAVIGATE_ORPHAN:
+                return PlaceContract.OrphanPlaceEntry.buildOrphanPlaceUriWithType(navigateTo);
+            case Constants.NAVIGATE_NURSING_HOME:
+                return PlaceContract.OrphanPlaceEntry.buildOrphanPlaceUriWithType(navigateTo);
+            default: return null;
+        }
     }
 
 }

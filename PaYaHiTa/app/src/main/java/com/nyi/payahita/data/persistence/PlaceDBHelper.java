@@ -16,6 +16,7 @@ public class PlaceDBHelper extends SQLiteOpenHelper {
             PlaceContract.OrphanPlaceEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             PlaceContract.OrphanPlaceEntry.COLUMN_ID + " TEXT NOT NULL, "+
             PlaceContract.OrphanPlaceEntry.COLUMN_TITLE + " TEXT NOT NULL, "+
+            PlaceContract.OrphanPlaceEntry.COLUMN_TYPE+ " INTEGER, "+
             PlaceContract.OrphanPlaceEntry.COLUMN_DIVISION + " TEXT, "+
             PlaceContract.OrphanPlaceEntry.COLUMN_LOCATION + " TEXT, "+
             PlaceContract.OrphanPlaceEntry.COLUMN_PH_NO + " TEXT, "+

@@ -3,8 +3,6 @@ package com.nyi.payahita;
 import android.app.Application;
 import android.content.Context;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.nyi.payahita.data.agents.Firebase;
 import com.nyi.payahita.data.models.PlaceModel;
 import com.nyi.payahita.data.vos.PlaceVO;
@@ -27,6 +25,7 @@ public class PaYaHiTa extends Application{
 
         //uploadData();
         Firebase.fetchData(Constants.NAVIGATE_ORPHAN);
+        Firebase.fetchData(Constants.NAVIGATE_NURSING_HOME);
 
     }
 
@@ -36,10 +35,10 @@ public class PaYaHiTa extends Application{
 
     public void uploadData(){
 
-        List<PlaceVO> placeVOList = UploadDataUtils.assignData();
+        List<PlaceVO> placeVOList = UploadDataUtils.assignNursingHomeData();
 
         for(PlaceVO placeVO: placeVOList){
-            Firebase.uploadNewPlace(Constants.NAVIGATE_ORPHAN, placeVO);
+            Firebase.uploadNewPlace(Constants.NAVIGATE_NURSING_HOME, placeVO);
         }
     }
 }

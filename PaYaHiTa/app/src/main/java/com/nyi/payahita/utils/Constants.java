@@ -7,7 +7,10 @@ public class Constants {
     public static final String LOGTAG = "PaYaHiTa";
 
     //Loader ID
-    public static final int PLACE_LIST_LOADER = 1;
+    public static final int PLACE_LIST_LOADER1 = 1;
+    public static final int PLACE_LIST_LOADER2= 2;
+    public static final int PLACE_LIST_LOADER3 = 3;
+    public static final int PLACE_LIST_LOADER4 = 4;
     public static final int PLACE_DETAIL_LOADER = 2;
     public static final int PLACE_SAVED_LIST_LOADER = 3;
 

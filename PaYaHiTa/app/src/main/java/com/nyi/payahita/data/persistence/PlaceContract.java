@@ -15,7 +15,6 @@ public class PlaceContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     public static final String PATH_ORPHAN_PLACE = "orphanPlace";
-    public static final String PATH_NURSING_HOME_PLACE = "nursingHomePlace";
 
     public static final class OrphanPlaceEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
@@ -31,6 +30,7 @@ public class PlaceContract {
 
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_TYPE = "type";
         public static final String COLUMN_DIVISION = "division";
         public static final String COLUMN_LOCATION = "location";
         public static final String COLUMN_PH_NO = "phno";
@@ -65,6 +65,17 @@ public class PlaceContract {
 
         public static String getIsSavedValueFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_IS_SAVED);
+        }
+
+        public static Uri buildOrphanPlaceUriWithType(int navigateType) {
+            //content://com.nyi.payahita/place?id="placeID"
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TYPE, navigateType +"")
+                    .build();
+        }
+
+        public static String getTypeFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_TYPE);
         }
     }
 }

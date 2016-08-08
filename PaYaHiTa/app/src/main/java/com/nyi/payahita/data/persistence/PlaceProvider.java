@@ -24,6 +24,7 @@ public class PlaceProvider extends ContentProvider {
 
     public static final String placeIDSelection = PlaceContract.OrphanPlaceEntry.COLUMN_ID + " = ?";
     public static final String placeIsSavedSelection = PlaceContract.OrphanPlaceEntry.COLUMN_IS_SAVED + " = ?";
+    public static final String placeTypeSelection = PlaceContract.OrphanPlaceEntry.COLUMN_TYPE + " = ?";
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private PlaceDBHelper mPlaceDBHelper;
@@ -41,12 +42,14 @@ public class PlaceProvider extends ContentProvider {
         String placeID = "";
         String isSaved = "";
         String tableName = "";
+        String type = "";
 
         int matchUri = sUriMatcher.match(uri);
         switch (matchUri) {
             case ORPHAN_PLACE:
                 placeID = PlaceContract.OrphanPlaceEntry.getIDFromParam(uri);
                 isSaved = PlaceContract.OrphanPlaceEntry.getIsSavedValueFromParam(uri);
+                type = PlaceContract.OrphanPlaceEntry.getTypeFromParam(uri);
                 tableName = PlaceContract.OrphanPlaceEntry.TABLE_NAME;
 
                 if (!TextUtils.isEmpty(placeID)) {
@@ -57,6 +60,11 @@ public class PlaceProvider extends ContentProvider {
                 if(!TextUtils.isEmpty(isSaved)){
                     selection = placeIsSavedSelection;
                     selectionArgs = new String[]{isSaved};
+                }
+
+                if(!TextUtils.isEmpty(type)){
+                    selection = placeTypeSelection;
+                    selectionArgs = new String[]{type};
                 }
 
                 queryCursor = mPlaceDBHelper.getReadableDatabase().query(tableName,

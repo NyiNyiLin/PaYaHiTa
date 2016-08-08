@@ -39,7 +39,10 @@ public class Firebase {
                 placeAdapter.addNewPlace(placeVO);*/
 
                 //Using Content Provider
-                if(placeVO.getTitle() != null) PlaceModel.getObjInstance().notifyPlaceLoaded(navigateType, placeVO);
+                if(placeVO.getTitle() != null) {
+                    placeVO.setType(navigateType);
+                    PlaceModel.getObjInstance().notifyPlaceLoaded(placeVO);
+                }
                 else Log.d(Constants.LOGTAG, LOGTAG + "Place is empty");
             }
 

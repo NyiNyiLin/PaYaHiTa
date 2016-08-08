@@ -68,12 +68,9 @@ public class PlaceModel{
         return mPlaceList;
     }
 
-    public void notifyPlaceLoaded(int navigateType, PlaceVO placeVO){
-        //mPlaceList.add(placeVO);
+    public void notifyPlaceLoaded(PlaceVO placeVO){
 
-        //TODO
-
-        Log.d(Constants.LOGTAG, LOGTAG + placeVO.getTitle());
+        Log.d(Constants.LOGTAG, LOGTAG + placeVO.getTitle() + placeVO.getType());
 
         //keep the data in persistent layer.
         Context context = PaYaHiTa.getContext();
