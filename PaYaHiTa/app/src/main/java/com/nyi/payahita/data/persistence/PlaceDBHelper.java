@@ -29,6 +29,7 @@ public class PlaceDBHelper extends SQLiteOpenHelper {
 
 
 
+
     public PlaceDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

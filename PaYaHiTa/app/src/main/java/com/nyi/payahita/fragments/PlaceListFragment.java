@@ -105,7 +105,7 @@ public class PlaceListFragment extends Fragment implements LoaderManager.LoaderC
         List<PlaceVO> placeVOList = new ArrayList<>();
         if (data != null && data.moveToFirst()) {
             do {
-                PlaceVO placeVO = parseFromCursor(data);
+                PlaceVO placeVO = PlaceVO.parseFromCursor(data);
                 placeVOList.add(placeVO);
             } while (data.moveToNext());
         }
@@ -120,17 +120,4 @@ public class PlaceListFragment extends Fragment implements LoaderManager.LoaderC
 
     }
 
-    public static PlaceVO parseFromCursor(Cursor data) {
-        PlaceVO placeVO = new PlaceVO(
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_ID)),
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_TITLE)),
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_DIVISION)),
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_LOCATION)),
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_PH_NO)),
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_COST)),
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_QUANTITY)),
-                data.getString(data.getColumnIndex(PlaceContract.OrphanPlaceEntry.COLUMN_DETAIL))
-        );
-        return placeVO;
-    }
 }

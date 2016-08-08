@@ -21,57 +21,8 @@ public class Firebase {
 
     private static final String LOGTAG = "Firebase + ";
 
-    public static void fetchDta(final PlaceAdapter placeAdapter){
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("orphan");
 
-
-        //databaseReference.addValueEventListener()
-
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                PlaceVO placeVO = dataSnapshot.getValue(PlaceVO.class);
-                placeVO.setId(dataSnapshot.getKey());
-
-                //This is for direct insert
-                /*PlaceModel.getObjInstance().addNewPlace(placeVO);
-                placeAdapter.addNewPlace(placeVO);*/
-
-                //Using Content Provider
-                PlaceModel.getObjInstance().notifyPlaceLoaded(placeVO);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                PlaceVO placeVO = dataSnapshot.getValue(PlaceVO.class);
-
-                List<PlaceVO> placeVOList = PlaceModel.getObjInstance().update(placeVO, dataSnapshot.getKey());
-
-                placeAdapter.addAllList(placeVOList);
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                PlaceVO placeVO = dataSnapshot.getValue(PlaceVO.class);
-                PlaceModel.getObjInstance().getPlaceList().remove(placeVO);
-                placeAdapter.removePlace(placeVO);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    public static void fetchData(int navigateType){
+    public static void fetchData(final int navigateType){
         final DatabaseReference databaseReference = checkType(navigateType);
 
         //databaseReference.addValueEventListener()
@@ -88,7 +39,7 @@ public class Firebase {
                 placeAdapter.addNewPlace(placeVO);*/
 
                 //Using Content Provider
-                if(placeVO.getTitle() != null) PlaceModel.getObjInstance().notifyPlaceLoaded(placeVO);
+                if(placeVO.getTitle() != null) PlaceModel.getObjInstance().notifyPlaceLoaded(navigateType, placeVO);
                 else Log.d(Constants.LOGTAG, LOGTAG + "Place is empty");
             }
 
@@ -129,6 +80,9 @@ public class Firebase {
         switch (navigateTo){
             case Constants.NAVIGATE_ORPHAN:
                 mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("orphan");
+                return mDatabaseReference;
+            case Constants.NAVIGATE_NURSING_HOME:
+                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("nursinghome");
                 return mDatabaseReference;
             default:
                 return FirebaseDatabase.getInstance().getReference();

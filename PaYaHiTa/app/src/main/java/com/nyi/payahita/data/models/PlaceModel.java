@@ -6,12 +6,15 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nyi.payahita.PaYaHiTa;
 import com.nyi.payahita.data.persistence.PlaceContract;
 import com.nyi.payahita.data.persistence.PlaceProvider;
 import com.nyi.payahita.data.vos.PlaceVO;
 import com.nyi.payahita.utils.Constants;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +68,10 @@ public class PlaceModel{
         return mPlaceList;
     }
 
-    public void notifyPlaceLoaded(PlaceVO placeVO){
-        mPlaceList.add(placeVO);
+    public void notifyPlaceLoaded(int navigateType, PlaceVO placeVO){
+        //mPlaceList.add(placeVO);
+
+        //TODO
 
         Log.d(Constants.LOGTAG, LOGTAG + placeVO.getTitle());
 
@@ -78,11 +83,21 @@ public class PlaceModel{
 
     }
 
-
-
     public void notifyPlaceChange(PlaceVO placeVO) {
         //keep the data in persistent layer.
         Context context = PaYaHiTa.getContext();
         context.getContentResolver().update(PlaceContract.OrphanPlaceEntry.CONTENT_URI, PlaceVO.parseToContentValues(placeVO), PlaceProvider.placeIDSelection, new String[]{placeVO.getId()});
+    }
+
+    private Uri checkURI(int navigateTo){
+        DatabaseReference mDatabaseReference;
+        switch (navigateTo){
+            case Constants.NAVIGATE_ORPHAN:
+                return PlaceContract.OrphanPlaceEntry.CONTENT_URI;
+            case Constants.NAVIGATE_NURSING_HOME:
+                return PlaceContract.OrphanPlaceEntry.CONTENT_URI;
+            default:
+                return null;
+        }
     }
 }

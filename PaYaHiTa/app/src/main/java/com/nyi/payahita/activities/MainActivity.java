@@ -2,6 +2,7 @@ package com.nyi.payahita.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -140,7 +141,23 @@ public class MainActivity extends AppCompatActivity implements PlaceViewHolder.C
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        return false;
+    public boolean onNavigationItemSelected(final MenuItem item) {
+        mDrawerLayout.closeDrawers();
+        final int id = item.getItemId();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switch (id){
+                    case R.id.menu_saved:
+                        Intent intent = new Intent(getApplicationContext(), SavedActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+
+            }
+        }, 100);
+
+        return true;
     }
 }

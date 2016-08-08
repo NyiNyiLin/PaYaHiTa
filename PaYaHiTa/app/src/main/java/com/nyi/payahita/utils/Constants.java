@@ -9,6 +9,7 @@ public class Constants {
     //Loader ID
     public static final int PLACE_LIST_LOADER = 1;
     public static final int PLACE_DETAIL_LOADER = 2;
+    public static final int PLACE_SAVED_LIST_LOADER = 3;
 
     public static final int NAVIGATE_ORPHAN = 0;
     public static final int NAVIGATE_NURSING_HOME = 1;

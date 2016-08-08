@@ -20,7 +20,8 @@ import com.nyi.payahita.utils.Constants;
 public class PlaceProvider extends ContentProvider {
     public final String LOGTAG = "PlaceProvider + ";
 
-    public static final int PLACE = 100;
+    public static final int ORPHAN_PLACE = 100;
+
     public static final String placeIDSelection = PlaceContract.OrphanPlaceEntry.COLUMN_ID + " = ?";
     public static final String placeIsSavedSelection = PlaceContract.OrphanPlaceEntry.COLUMN_IS_SAVED + " = ?";
 
@@ -37,24 +38,28 @@ public class PlaceProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor queryCursor;
+        String placeID = "";
+        String isSaved = "";
+        String tableName = "";
 
         int matchUri = sUriMatcher.match(uri);
         switch (matchUri) {
-            case PLACE:
-                String placeID = PlaceContract.OrphanPlaceEntry.getIDFromParam(uri);
+            case ORPHAN_PLACE:
+                placeID = PlaceContract.OrphanPlaceEntry.getIDFromParam(uri);
+                isSaved = PlaceContract.OrphanPlaceEntry.getIsSavedValueFromParam(uri);
+                tableName = PlaceContract.OrphanPlaceEntry.TABLE_NAME;
+
                 if (!TextUtils.isEmpty(placeID)) {
                     selection = placeIDSelection;
                     selectionArgs = new String[]{placeID};
                     Log.d(Constants.LOGTAG, LOGTAG + placeID);
                 }
-
-                String isSaved = PlaceContract.OrphanPlaceEntry.getIsSavedValueFromParam(uri);
                 if(!TextUtils.isEmpty(isSaved)){
                     selection = placeIsSavedSelection;
                     selectionArgs = new String[]{isSaved};
                 }
 
-                queryCursor = mPlaceDBHelper.getReadableDatabase().query(PlaceContract.OrphanPlaceEntry.TABLE_NAME,
+                queryCursor = mPlaceDBHelper.getReadableDatabase().query(tableName,
                         projection,
                         selection,
                         selectionArgs,
@@ -62,6 +67,7 @@ public class PlaceProvider extends ContentProvider {
                         null, //having
                         sortOrder);
                 break;
+
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
 
@@ -80,7 +86,7 @@ public class PlaceProvider extends ContentProvider {
     public String getType(Uri uri) {
         final int matchUri = sUriMatcher.match(uri);
         switch (matchUri) {
-            case PLACE:
+            case ORPHAN_PLACE:
                 return PlaceContract.OrphanPlaceEntry.DIR_TYPE;
 
             default:
@@ -96,10 +102,10 @@ public class PlaceProvider extends ContentProvider {
         Uri insertedUri;
 
         switch (matchUri) {
-            case PLACE: {
+            case ORPHAN_PLACE: {
                 long _id = db.insert(PlaceContract.OrphanPlaceEntry.TABLE_NAME, null, contentValues);
                 if (_id > 0) {
-                    insertedUri = PlaceContract.OrphanPlaceEntry.buildAttractionUri(_id);
+                    insertedUri = PlaceContract.OrphanPlaceEntry.buildOrphanPlaceUri(_id);
                 } else {
                     throw new SQLException("Failed to insert row into " + uri);
                 }
@@ -141,8 +147,7 @@ public class PlaceProvider extends ContentProvider {
     private static UriMatcher buildUriMatcher() {
         final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-        uriMatcher.addURI(PlaceContract.CONTENT_AUTHORITY, PlaceContract.PATH_ORPHAN_PLACE, PLACE);
-
+        uriMatcher.addURI(PlaceContract.CONTENT_AUTHORITY, PlaceContract.PATH_ORPHAN_PLACE, ORPHAN_PLACE);
         return uriMatcher;
     }
 
@@ -150,7 +155,7 @@ public class PlaceProvider extends ContentProvider {
         final int matchUri = sUriMatcher.match(uri);
 
         switch (matchUri) {
-            case PLACE:
+            case ORPHAN_PLACE:
                 return PlaceContract.OrphanPlaceEntry.TABLE_NAME;
 
             default:
